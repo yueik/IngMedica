@@ -18,12 +18,15 @@ class CreateModelosTable extends Migration
 
             $table->string('modelo');
             $table->float('precio');
-            $table->unsignedBigInteger('marca_id');
+            $table->unsignedBigInteger('marca_id')->nullable();
             $table->boolean('activo');
 
             $table->timestamps();
 
-            $table->foreign('marca_id')->references('id')->on('marcas');
+            $table->foreign('marca_id')
+                ->references('id')
+                ->on('marcas')
+                ->onDelete('set null');
         });
     }
 
