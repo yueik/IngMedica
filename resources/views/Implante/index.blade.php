@@ -17,6 +17,7 @@
                 <th scope="col">Codigo</th>
                 <th scope="col">Serie</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,14 @@
                 <td>{{ $implante->codigo }}</td>
                 <td>{{ $implante->serie }}</td>
                 <td>{{ $implante->estado->estado}}</td>
+                <td>
+                    <form action="{{ route('destroy', $implante->id) }}" method="POST">
+                        <a href="/" class="btn btn-info">Editar</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

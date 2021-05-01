@@ -85,8 +85,8 @@ class ImplanteController extends Controller
      */
     public function destroy($id)
     {
-        $implante = Implante::find($id);
-        $implante->delete();
+        /*$implante = Implante::find($id);
+        $implante->delete();*/
 
         return redirect('/implantes');
     }
