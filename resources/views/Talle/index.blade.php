@@ -1,37 +1,27 @@
 @extends('adminlte::page')
 
-@section('title', 'Implantes')
+@section('title', 'Talles')
 
 @section('content_header')
-    <h1>Listado De Implantes</h1>
+    <h1>Listado De Talles</h1>
 @stop
 
 @section('content')
-    <table id="implantes" class="table table-striped table-bordered shadow-lg mt-4">
+    <table id="talles" class="table table-striped table-bordered shadow-lg mt-4">
         <thead class="bg-primary text-white">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Modelo</th>
                 <th scope="col">Talle</th>
-                <th scope="col">Codigo</th>
-                <th scope="col">Serie</th>
-                <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($implantes as $implante)
+            @foreach ($talles as $talle)
             <tr>
-                <td>{{ $implante->id }}</td>
-                <td>{{ $implante->modelo->marca->marca }}</td>
-                <td>{{ $implante->modelo->modelo }}</td>
-                <td>{{ $implante->talle->talle }}</td>
-                <td>{{ $implante->codigo }}</td>
-                <td>{{ $implante->serie }}</td>
-                <td>{{ $implante->estado->estado}}</td>
+                <td>{{ $talle->id }}</td>
+                <td>{{ $talle->talle }}</td>
                 <td>
-                    <form action="{{ route('destroy', $implante->id) }}" method="POST">
+                    <form action="{{ route('Talles.destroy', $talle->id) }}" method="POST">
                         <a href="/" class="btn btn-info"><i class="far fa-fw fa-file"></i> Editar</a>
                         @csrf
                         @method('DELETE')
@@ -59,7 +49,7 @@
 "></script>
     <script>
         $(document).ready(function() {
-            $('#implantes').DataTable({
+            $('#talles').DataTable({
                 "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "All"]],
                 "responsive": true,
                 "autoWidth": false
