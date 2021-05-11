@@ -13,7 +13,7 @@ use App\Http\Controllers\TalleController;
 
 //Route::get('/', [ImplanteController::class, 'index'])->name('index');
 //Route::delete('/', [ImplanteController::class, 'destroy'])->name('implantes.destroy');
-Route::resource('/', ImplanteController::class);
+Route::resource('/Implantes', ImplanteController::class);
 Route::resource('/Marcas', MarcaController::class);
 Route::resource('/Modelos', ModeloController::class);
 Route::resource('/Talles', TalleController::class);

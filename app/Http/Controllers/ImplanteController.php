@@ -40,7 +40,18 @@ class ImplanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $implante = new Implante();
+
+        $implante->modelo_id = $request->get('modelo');
+        $implante->talle_id = $request->get('talle');
+        $implante->codigo = $request->get('codigo');
+        $implante->serie = $request->get('serie');
+        $implante->estado_id = $request->get('estado');
+        $implante->activo = 1;
+
+        $implante->save();
+
+        return redirect('/Implantes');
     }
 
     /**
@@ -74,7 +85,18 @@ class ImplanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $implante = Implante::find($id);
+
+        $implante->modelo_id = $request->get('modelo');
+        $implante->talle_id = $request->get('talle');
+        $implante->codigo = $request->get('codigo');
+        $implante->serie = $request->get('serie');
+        $implante->estado_id = $request->get('estado');
+        $implante->activo = 1;
+
+        $implante->save();
+
+        return redirect('/Implantes');
     }
 
     /**
@@ -85,9 +107,9 @@ class ImplanteController extends Controller
      */
     public function destroy($id)
     {
-        /*$implante = Implante::find($id);
-        $implante->delete();*/
+        $implante = Implante::find($id);
+        $implante->delete();
 
-        return redirect('/implantes');
+        //return redirect('/Implantes');
     }
 }
