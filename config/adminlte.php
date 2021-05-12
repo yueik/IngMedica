@@ -250,15 +250,13 @@ return [
             'icon'        => 'fas fa-fw fa-shipping-fast',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Clientes',
+            'url'         => 'Clientes',
+            'icon'        => 'fas fa-fw fa-user-md',
         ],
         [
             'text'    => 'Mantenimiento',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-fw fa-database',
             'submenu' => [
                 [
                     'text' => 'Marcas',
@@ -271,6 +269,14 @@ return [
                 [
                     'text' => 'Talles',
                     'url'  => 'Talles',
+                ],
+                [
+                    'text' => 'Estados de Egreso',
+                    'url'  => 'EstadosEgreso',
+                ],
+                [
+                    'text' => 'Estados de Implante',
+                    'url'  => 'EstadosInsumo',
                 ],
             ],
         ],

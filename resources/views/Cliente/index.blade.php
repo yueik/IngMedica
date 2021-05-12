@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#addImplante">
+    <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#addCliente">
     Launch demo modal
     </button>
 
@@ -35,6 +35,7 @@
                 <td>
                     <form action="{{ route('Clientes.destroy', $cliente->id) }}" method="POST">
                         <a href="#" class="btn btn-info editCliente"><i class="far fa-fw fa-file"></i> Editar</a>
+                        <a href="{{ route('Direcciones.index') }}" class="btn btn-success"><i class="far fa-fw fa-file"></i> Direcciones</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -59,8 +60,8 @@
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" name="nombre">
+                            <label for="cliente">Nombre</label>
+                            <input type="text" class="form-control" name="cliente">
                         </div>
                         <div class="form-group">
                             <label for="cuit">Cuit</label>
@@ -103,8 +104,8 @@
                     @method('PUT')
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre">
+                            <label for="cliente">Nombre</label>
+                            <input type="text" class="form-control" name="cliente" id="cliente">
                         </div>
                         <div class="form-group">
                             <label for="cuit">Cuit</label>
@@ -154,7 +155,7 @@
                 "autoWidth": false
             });
             
-            $('#formEditClientes').submit(function(e) {
+            $('#formEditCliente').submit(function(e) {
                 e.preventDefault();
                 tablaClientes.ajax.reload(null, false);
             })
@@ -169,7 +170,7 @@
                 //Coloco los valores del registro en el Form
                 var data = tablaClientes.row(fila).data();
                 console.log(data[1])
-                $('#nombre').val(data[1]);
+                $('#cliente').val(data[1]);
                 $('#cuit').val(data[2]);
                 $('#documento').val(data[3]);
                 $('#telefono').val(data[4]);
