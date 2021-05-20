@@ -9,6 +9,15 @@ class Implante extends Model
 {
     use HasFactory;
 
+    /*protected $fillable = [
+        'id',
+        'modelo_id',
+        'talle_id',
+        'codigo',
+        'serie',
+        'estado_id',
+    ];*/
+
     public function modelo() {
         return $this->belongsTo(Modelo::class);
     }
