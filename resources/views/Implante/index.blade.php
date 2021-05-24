@@ -18,4 +18,13 @@
 @stop
 
 @section('js')
+  <script type="text/javascript">
+    Livewire.on('alert', function(message) {
+      Swal.fire(
+        'Excelente!',
+        message,
+        'success'
+      )
+    })
+  </script>
 @stop

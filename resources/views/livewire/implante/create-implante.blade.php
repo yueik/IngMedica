@@ -1,6 +1,6 @@
 <div>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addImplante">Agregar</button>
-    
+
     <div class="modal fade" id="addImplante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="false">
         <div class="modal-dialog modal-lg" role="document">
@@ -42,10 +42,20 @@
                         <div class="form-group">
                             <label for="codigo">Código</label>
                             <input type="text" class="form-control" name="codigo" wire:model.defer="codigo">
+                            @error('codigo')
+                            <span>
+                                {{$message}}
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="serie">Serie</label>
                             <input type="text" class="form-control" name="serie" wire:model.defer="serie">
+                            @error('serie')
+                            <span>
+                                {{$message}}
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="estado">Estado</label>
@@ -58,7 +68,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click.prevent="save">Guardar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            wire:click.prevent="save">Guardar</button>
                     </div>
                 </form>
             </div>

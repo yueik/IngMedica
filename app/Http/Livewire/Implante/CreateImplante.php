@@ -10,6 +10,14 @@ class CreateImplante extends Component
     public $open = false;
     public $marca, $modelo, $talle, $codigo, $serie, $estado;
 
+    protected $rules = [
+        'modelo' =>'required',
+        'talle' =>'required',
+        'codigo' =>'required',
+        'serie' =>'required',
+        'estado' =>'required'
+    ];
+
     public function mount()
     {
         $this->marca = 1;
@@ -20,6 +28,8 @@ class CreateImplante extends Component
 
     public function save()
     {
+        $this->validate();
+        
         Implante::create([
             'modelo_id' => $this->modelo,
             'talle_id' => $this->talle,
@@ -39,7 +49,8 @@ class CreateImplante extends Component
             'estado',
         ]);
 
-        $this->emit('render');
+        $this->emitTo('implante.tabla-implante', 'render');
+        $this->emit('alert', 'Implante registrado con éxito');
     }
 
     public function render()

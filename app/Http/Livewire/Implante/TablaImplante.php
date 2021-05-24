@@ -14,7 +14,7 @@ class TablaImplante extends Component
     public $sort = 'id';
     public $direction = 'desc';
 
-    protected $listeners = ['render' => 'render'];
+    protected $listeners = ['render'];
     
     public function render()
     {
