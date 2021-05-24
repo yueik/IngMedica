@@ -9,8 +9,7 @@
 @section('content')
 
     @livewire('implante.tabla-implante')
-
-    @livewire('implante.create-implante')
+    
 @stop
 
 @section('css')    

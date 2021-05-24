@@ -1,6 +1,6 @@
 <div>
   <div class="px-0 py-3 flex justify-between">
-    <button class="btn btn-primary">Agregar</button>
+    @livewire('implante.create-implante')
     <input type="text" wire:model="search" placeholder="Buscar...">
   </div>
 

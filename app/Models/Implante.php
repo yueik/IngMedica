@@ -9,14 +9,14 @@ class Implante extends Model
 {
     use HasFactory;
 
-    /*protected $fillable = [
-        'id',
+    protected $fillable = [
         'modelo_id',
         'talle_id',
         'codigo',
         'serie',
         'estado_id',
-    ];*/
+        'activo',
+    ];
 
     public function modelo() {
         return $this->belongsTo(Modelo::class);
