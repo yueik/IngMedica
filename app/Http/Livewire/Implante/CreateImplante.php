@@ -21,15 +21,15 @@ class CreateImplante extends Component
     public function mount()
     {
         $this->marca = 1;
-        $this->modelo = 1;
-        $this->talle = 1;
-        $this->estado = 1;
+        $this->modelo = '';
+        $this->talle = '';
+        $this->estado = '';
     }
 
     public function save()
     {
         $this->validate();
-        
+
         Implante::create([
             'modelo_id' => $this->modelo,
             'talle_id' => $this->talle,
@@ -51,6 +51,12 @@ class CreateImplante extends Component
 
         $this->emitTo('implante.tabla-implante', 'render');
         $this->emit('alert', 'Implante registrado con éxito');
+        $this->dispatchBrowserEvent('closeModal');
+    }
+
+    public function addImplante()
+    {
+        $this->dispatchBrowserEvent('showModal');
     }
 
     public function render()

@@ -18,6 +18,7 @@
 @stop
 
 @section('js')
+
   <script type="text/javascript">
     Livewire.on('alert', function(message) {
       Swal.fire(
@@ -25,6 +26,12 @@
         message,
         'success'
       )
+    })
+  </script>
+
+  <script>
+    window.addEventListener('closeModal', event => {
+      $("#addImplante").modal("hide");
     })
   </script>
 @stop
