@@ -32,6 +32,7 @@
   <script>
     window.addEventListener('closeModal', event => {
       $("#addImplante").modal("hide");
+      $("#editImplante").modal("hide");
     })
   </script>
 @stop

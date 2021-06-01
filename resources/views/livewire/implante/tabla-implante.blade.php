@@ -15,11 +15,11 @@
             wire:click="order('id')">
             ID
             @if($sort =='id')
-              @if($direction == 'asc')
-              <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-              @else
-              <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-              @endif
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
             @else
             <i class="fas fa-sort float-right mt-1"></i>
             @endif
@@ -33,11 +33,11 @@
             wire:click="order('modelo_id')">
             Modelo
             @if($sort =='modelo_id')
-              @if($direction == 'asc')
-              <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-              @else
-              <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-              @endif
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
             @else
             <i class="fas fa-sort float-right mt-1"></i>
             @endif
@@ -47,11 +47,11 @@
             wire:click="order('talle_id')">
             Talle
             @if($sort =='talle_id')
-              @if($direction == 'asc')
-              <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-              @else
-              <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-              @endif
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
             @else
             <i class="fas fa-sort float-right mt-1"></i>
             @endif
@@ -61,11 +61,11 @@
             wire:click="order('codigo')">
             Codigo
             @if($sort =='codigo')
-              @if($direction == 'asc')
-              <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-              @else
-              <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-              @endif
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
             @else
             <i class="fas fa-sort float-right mt-1"></i>
             @endif
@@ -75,11 +75,11 @@
             wire:click="order('serie')">
             Serie
             @if($sort =='serie')
-              @if($direction == 'asc')
-              <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-              @else
-              <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-              @endif
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
             @else
             <i class="fas fa-sort float-right mt-1"></i>
             @endif
@@ -89,11 +89,11 @@
             wire:click="order('estado_id')">
             Estado
             @if($sort =='estado_id')
-              @if($direction == 'asc')
-              <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-              @else
-              <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-              @endif
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
             @else
             <i class="fas fa-sort float-right mt-1"></i>
             @endif
@@ -115,7 +115,9 @@
           <td>{{ $implante->serie }}</td>
           <td>{{ $implante->estado->estado}}</td>
           <td>
-            <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+            <div class="inline-block">
+              @livewire('implante.edit-implante', ['implante'=>$implante], key($implante->id))
+            </div>
 
             <button wire:click="destroy({{ $implante->id }})" class="btn btn-danger">
               <i class="fas fa-trash"></i>
