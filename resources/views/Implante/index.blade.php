@@ -34,5 +34,9 @@
       $("#addImplante").modal("hide");
       $("#editImplante").modal("hide");
     })
+    window.addEventListener('showModal', event => {
+      $("#addImplante").modal("show");
+      $("#editImplante").modal("show");
+    })  
   </script>
 @stop

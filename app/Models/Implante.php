@@ -17,6 +17,7 @@ class Implante extends Model
         'estado_id',
         'activo',
     ];
+    protected $attributes = ['activo' => 1];
 
     public function modelo() {
         return $this->belongsTo(Modelo::class);

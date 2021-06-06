@@ -1,7 +1,112 @@
 <div>
   <div class="px-0 py-3 flex justify-between">
-    @livewire('implante.create-implante')
+    <button wire:click.prevent="addImplante" type="button" class="btn btn-primary">Agregar</button>
     <input type="text" wire:model="search" placeholder="Buscar...">
+  </div>
+
+  <div class="modal fade" wire:ignore.self id="addImplante" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-blue-500">
+          <h5 class="modal-title" id="exampleModalLabel">
+            @if($editModal)
+            <span class="text-white">Editar Implante</span>
+            @else
+            <span class="text-white">Registrar Implante</span>
+            @endif
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form wire:submit.prevent="{{ $editModal ? 'updateImplante' : 'createImplante' }}">
+          @csrf
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="marca_id">Marca</label>
+              <select class="form-control" name="marca_id" wire:model.defer="state.marca_id">
+                @foreach ($implantes as $implante)
+                <option value="{{ $implante->modelo->marca->id }}">
+                  {{ $implante->modelo->marca->marca }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="modelo_id">Modelo</label>
+              <select class="form-control @error('modelo_id') is-invalid @enderror" name="modelo_id"
+                wire:model.defer="state.modelo_id">
+                <option value=""></option>
+                @foreach ($implantes as $implante)
+                <option value="{{ $implante->modelo->id }}">{{ $implante->modelo->modelo }}</option>
+                @endforeach
+              </select>
+              @error('modelo_id')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="talle_id">Talle</label>
+              <select class="form-control @error('talle_id') is-invalid @enderror" name="talle_id"
+                wire:model.defer="state.talle_id">
+                <option value=""></option>
+                @foreach ($implantes as $implante)
+                <option value="{{ $implante->talle->id }}">{{ $implante->talle->talle }}</option>
+                @endforeach
+              </select>
+              @error('talle_id')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="codigo">Código</label>
+              <input type="text" class="form-control @error('codigo') is-invalid @enderror" id="codigo"
+                wire:model.defer="state.codigo">
+              @error('codigo')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="serie">Serie</label>
+              <input type="text" class="form-control @error('serie') is-invalid @enderror" name="serie"
+                wire:model.defer="state.serie">
+              @error('serie')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="estado_id">Estado</label>
+              <select class="form-control @error('estado_id') is-invalid @enderror" name="estado_id"
+                wire:model.defer="state.estado_id">
+                <option value=""></option>
+                @foreach ($implantes as $implante)
+                <option value="{{ $implante->estado->id }}">{{ $implante->estado->estado }}</option>
+                @endforeach
+              </select>
+              @error('estado_id')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror
+            </div>
+          </div>
+          <div class="modal-footer align-items-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary" wire:loading.remove wire:target="save">Guardar</button>
+            <img src="{{ asset('img/loading.gif') }}" height="50" width="50" wire:loading wire:target="save"
+              alt="Cargando..">
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   @if ($implantes->count())
@@ -115,9 +220,9 @@
           <td>{{ $implante->serie }}</td>
           <td>{{ $implante->estado->estado}}</td>
           <td>
-            <div class="inline-block">
-              @livewire('implante.edit-implante', ['implante'=>$implante], key($implante->id))
-            </div>
+            <a type="button" class="btn btn-warning" wire:click.prevent="editImplante({{ $implante }})">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
 
             <button wire:click="destroy({{ $implante->id }})" class="btn btn-danger">
               <i class="fas fa-trash"></i>
