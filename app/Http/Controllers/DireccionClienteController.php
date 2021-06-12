@@ -14,9 +14,7 @@ class DireccionClienteController extends Controller
      */
     public function index()
     {
-        $direcciones = DireccionCliente::with('cliente')->get();
-
-        return view('DireccionCliente.index')->with('direcciones', $direcciones);
+        return view('DireccionCliente.index');
     }
 
     /**
@@ -48,7 +46,7 @@ class DireccionClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('DireccionCliente.index')->with('cliente_id', $id);
     }
 
     /**

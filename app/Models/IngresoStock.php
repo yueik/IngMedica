@@ -9,6 +9,13 @@ class IngresoStock extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'fecha',
+        'observacion',
+        'activo',
+    ];
+    protected $attributes = ['activo' => 1];
+
     public function detalle_ingresos() {
         return $this->belongsTo(DetalleIngreso::class);
     }

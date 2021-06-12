@@ -9,6 +9,12 @@ class EstadoInsumo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'estado',
+        'activo',
+    ];
+    protected $attributes = ['activo' => 1];
+
     public function implantes() {
         return $this->hasMany(Implante::class);
     }

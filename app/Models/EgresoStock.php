@@ -9,7 +9,17 @@ class EgresoStock extends Model
 {
     use HasFactory;
 
-    public function estado_egreso() {
+    protected $fillable = [
+        'fecha',
+        'cliente_id',
+        'montoFinal',
+        'estado_id',
+        'observacion',
+        'activo',
+    ];
+    protected $attributes = ['activo' => 1];
+
+    public function estado() {
         return $this->belongsTo(EstadoEgreso::class);
     }
 

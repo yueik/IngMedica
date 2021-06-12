@@ -24,6 +24,7 @@ class CreateDireccionClientesTable extends Migration
             $table->string('barrio');
             $table->integer('codigoPostal');
             $table->text('observacion');
+            $table->boolean('activo');
 
             $table->timestamps();
 

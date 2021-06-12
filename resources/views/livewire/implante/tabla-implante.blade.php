@@ -37,8 +37,8 @@
               <select class="form-control @error('modelo_id') is-invalid @enderror" name="modelo_id"
                 wire:model.defer="state.modelo_id">
                 <option value=""></option>
-                @foreach ($implantes as $implante)
-                <option value="{{ $implante->modelo->id }}">{{ $implante->modelo->modelo }}</option>
+                @foreach ($modelos as $modelo)
+                <option value="{{ $modelo->id }}">{{ $modelo->modelo }}</option>
                 @endforeach
               </select>
               @error('modelo_id')
@@ -52,8 +52,8 @@
               <select class="form-control @error('talle_id') is-invalid @enderror" name="talle_id"
                 wire:model.defer="state.talle_id">
                 <option value=""></option>
-                @foreach ($implantes as $implante)
-                <option value="{{ $implante->talle->id }}">{{ $implante->talle->talle }}</option>
+                @foreach ($talles as $talle)
+                <option value="{{ $talle->id }}">{{ $talle->talle }}</option>
                 @endforeach
               </select>
               @error('talle_id')
@@ -87,8 +87,8 @@
               <select class="form-control @error('estado_id') is-invalid @enderror" name="estado_id"
                 wire:model.defer="state.estado_id">
                 <option value=""></option>
-                @foreach ($implantes as $implante)
-                <option value="{{ $implante->estado->id }}">{{ $implante->estado->estado }}</option>
+                @foreach ($estados as $estado)
+                <option value="{{ $estado->id }}">{{ $estado->estado }}</option>
                 @endforeach
               </select>
               @error('estado_id')

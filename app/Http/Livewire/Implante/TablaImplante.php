@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Implante;
 
 use Livewire\Component;
 use App\Models\Implante;
+use App\Models\Modelo;
+use App\Models\EstadoInsumo;
+use App\Models\Talle;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,7 +30,10 @@ class TablaImplante extends Component
                 ->orWhere('serie', 'like', '%' . $this->search . '%')
                 ->orWhere('estado_id', 'like', '%' . $this->search . '%')
                 ->orderBy($this->sort, $this->direction)
-                ->paginate()
+                ->paginate(),
+            'modelos' => Modelo::all(),
+            'talles' => Talle::all(),
+            'estados' => EstadoInsumo::all(),
         ]);
     }
 

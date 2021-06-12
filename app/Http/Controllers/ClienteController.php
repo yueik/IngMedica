@@ -14,9 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::all();
-
-        return view('Cliente.index')->with('clientes', $clientes);
+        return view('Cliente.index');
     }
 
     /**
@@ -37,18 +35,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = new Cliente();
-
-        $cliente->cliente = $request->get('cliente');
-        $cliente->cuit = $request->get('cuit');
-        $cliente->documento = $request->get('documento');
-        $cliente->telefono = $request->get('telefono');
-        $cliente->mail = $request->get('mail');
-        $cliente->activo = 1;
-
-        $cliente->save();
-
-        return redirect('/Clientes');
+        //
     }
 
     /**

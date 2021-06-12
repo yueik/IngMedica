@@ -195,6 +195,10 @@
               <i class="fas fa-pencil-alt"></i>
             </a>
 
+            <a href="/Direcciones/{{ $cliente->id }}" type="button" class="btn btn-success">
+              <i class="fas fa-map-marked-alt"></i>
+            </a>
+
             <button wire:click="destroy({{ $cliente->id }})" class="btn btn-danger">
               <i class="fas fa-trash"></i>
             </button>

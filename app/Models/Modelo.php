@@ -9,6 +9,14 @@ class Modelo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'marca_id',
+        'modelo',
+        'precio',
+        'activo',
+    ];
+    protected $attributes = ['activo' => 1];
+
     public function marca() {
         return $this->belongsTo(Marca::class);
     }

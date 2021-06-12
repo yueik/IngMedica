@@ -14,6 +14,7 @@ class Marca extends Model
         'id',
         'marca',
     ];
+    protected $attributes = ['activo' => 1];
 
     public function modelos() {
         return $this->hasMany(Modelo::class);
