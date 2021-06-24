@@ -116,25 +116,11 @@
       <thead class="bg-gray-600">
         <tr>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
-            wire:click="order('id')">
-            ID
-            @if($sort =='id')
-            @if($direction == 'asc')
-            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-            @else
-            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-            @endif
-            @else
-            <i class="fas fa-sort float-right mt-1"></i>
-            @endif
-          </th>
-          <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
             Marca
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('modelo_id')">
             Modelo
             @if($sort =='modelo_id')
@@ -148,7 +134,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('talle_id')">
             Talle
             @if($sort =='talle_id')
@@ -162,7 +148,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('codigo')">
             Codigo
             @if($sort =='codigo')
@@ -176,7 +162,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('serie')">
             Serie
             @if($sort =='serie')
@@ -190,7 +176,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('estado_id')">
             Estado
             @if($sort =='estado_id')
@@ -204,15 +190,14 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
             Acciones
           </th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
+      <tbody class="bg-white text-center divide-y divide-gray-200">
         @foreach ($implantes as $implante)
         <tr>
-          <td>{{ $implante->id }}</td>
           <td>{{ $implante->modelo->marca->marca }}</td>
           <td>{{ $implante->modelo->modelo }}</td>
           <td>{{ $implante->talle->talle }}</td>

@@ -8,7 +8,7 @@
 
 @section('content')
 
-@livewire('direccion-cliente.tabla-direccion-cliente', [$cliente_id])
+@livewire('direccion-cliente.tabla-direccion-cliente')
 
 @stop
 

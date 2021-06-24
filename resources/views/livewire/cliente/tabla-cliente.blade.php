@@ -1,4 +1,7 @@
-<div>    
+<div>
+  
+  @livewire('direccion-cliente.tabla-direccion-cliente')
+
   <div class="px-0 py-3 flex justify-between">
     <button wire:click.prevent="addCliente" type="button" class="btn btn-primary">Agregar</button>
     <input type="text" wire:model="search" placeholder="Buscar...">
@@ -92,9 +95,9 @@
       <thead class="bg-gray-600">
         <tr>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('id')">
-            ID
+            Código
             @if($sort =='id')
             @if($direction == 'asc')
             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
@@ -106,7 +109,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('cliente')">
             Cliente
             @if($sort =='cliente')
@@ -120,7 +123,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('cuit')">
             Cuit
             @if($sort =='cuit')
@@ -134,7 +137,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('documento')">
             documento
             @if($sort =='documento')
@@ -148,7 +151,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('telefono')">
             Teléfono
             @if($sort =='telefono')
@@ -162,7 +165,7 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('mail')">
             Mail
             @if($sort =='mail')
@@ -176,12 +179,12 @@
             @endif
           </th>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
             Acciones
           </th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
+      <tbody class="bg-white text-center divide-y divide-gray-200">
         @foreach ($clientes as $cliente)
         <tr>
             <td>{{ $cliente->id }}</td>
@@ -195,7 +198,7 @@
               <i class="fas fa-pencil-alt"></i>
             </a>
 
-            <a href="/Direcciones/{{ $cliente->id }}" type="button" class="btn btn-success">
+            <a type="button" class="btn btn-success" wire:click.prevent="direccionesCliente({{ $cliente }})">
               <i class="fas fa-map-marked-alt"></i>
             </a>
 

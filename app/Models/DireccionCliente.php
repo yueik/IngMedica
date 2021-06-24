@@ -20,7 +20,7 @@ class DireccionCliente extends Model
         'observacion',
         'activo',
     ];
-    protected $attributes = ['activo' => 1, 'cliente_id' => 1];
+    protected $attributes = ['activo' => 1];
 
 
     public function cliente() {

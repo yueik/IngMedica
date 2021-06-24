@@ -21,9 +21,12 @@ class TablaModelo extends Component
     public function render()
     {
         return view('livewire.modelo.tabla-modelo', [
-            'modelos' => Modelo::where('marca_id', 'like', '%' . $this->search . '%')
-                ->orWhere('precio', 'like', '%' . $this->search . '%')
-                ->orWhere('modelo', 'like', '%' . $this->search . '%')
+            'modelos' => Modelo::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('marca_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('precio', 'like', '%' . $this->search . '%')
+                        ->orWhere('modelo', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);

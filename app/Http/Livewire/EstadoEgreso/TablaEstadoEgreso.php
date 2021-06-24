@@ -21,8 +21,11 @@ class TablaEstadoEgreso extends Component
     public function render()
     {
         return view('livewire.estado-egreso.tabla-estado-egreso', [
-            'estados' => EstadoEgreso::where('id', 'like', '%' . $this->search . '%')
-                ->orWhere('estado', 'like', '%' . $this->search . '%')
+            'estados' => EstadoEgreso::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('id', 'like', '%' . $this->search . '%')
+                        ->orWhere('estado', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);

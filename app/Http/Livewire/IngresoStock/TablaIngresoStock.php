@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\IngresoStock;
 
+use App\Models\DetalleIngreso;
 use Livewire\Component;
 use App\Models\IngresoStock;
 use Livewire\WithPagination;
@@ -20,12 +21,19 @@ class TablaIngresoStock extends Component
 
     public function render()
     {
-        return view('livewire.ingreso-stock.tabla-ingreso-stock', [
-            'ingresos' => IngresoStock::where('id', 'like', '%' . $this->search . '%')
+        $ingresos = IngresoStock::where('activo', '=', 1)
+        ->where(function ($query) {
+            $query->orWhere('id', 'like', '%' . $this->search . '%')
                 ->orWhere('fecha', 'like', '%' . $this->search . '%')
-                ->orWhere('observacion', 'like', '%' . $this->search . '%')
-                ->orderBy($this->sort, $this->direction)
-                ->paginate()
+                ->orWhere('observacion', 'like', '%' . $this->search . '%');
+        })
+        ->orderBy($this->sort, $this->direction)
+        ->paginate();
+
+        DetalleIngreso::where('ingreso_stock_id', 0)->delete();
+
+        return view('livewire.ingreso-stock.tabla-ingreso-stock', [
+            'ingresos' => $ingresos
         ]);
     }
 
@@ -34,6 +42,8 @@ class TablaIngresoStock extends Component
         $this->state = [];
         $this->editModal = false;
         $this->dispatchBrowserEvent("showModal");
+        $this->emit('detallesIngreso', 0);
+        $this->emit('render');
     }
 
     public function createIngresoStock()
@@ -44,6 +54,10 @@ class TablaIngresoStock extends Component
         ])->validate();
 
         IngresoStock::create($validar);
+
+        $ingreso = IngresoStock::select('id')->orderByDesc('id')->limit(1)->get();
+        DetalleIngreso::where('ingreso_stock_id', 0)
+            ->update(['ingreso_stock_id' => $ingreso[0]['id']]);
 
         $this->emit('alert', 'Ingreso registrado con éxito');
         $this->dispatchBrowserEvent('closeModal');
@@ -58,6 +72,9 @@ class TablaIngresoStock extends Component
         $this->state = $ingreso_stock->toArray();
 
         $this->dispatchBrowserEvent("showModal");
+
+        $this->emit('detallesIngreso', $ingreso_stock->id);
+        $this->emit('render');
     }
 
     public function updateIngresoStock()
@@ -78,6 +95,7 @@ class TablaIngresoStock extends Component
         IngresoStock::destroy($id);
     }
 
+    
     public function order($sort)
     {
         if ($this->sort == $sort) {
@@ -90,5 +108,10 @@ class TablaIngresoStock extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function cerrarModal() 
+    {
+        $this->dispatchBrowserEvent('closeModal');
     }
 }

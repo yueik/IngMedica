@@ -24,11 +24,15 @@ class TablaImplante extends Component
     public function render()
     {
         return view('livewire.implante.tabla-implante', [
-            'implantes' => Implante::where('modelo_id', 'like', '%' . $this->search . '%')
-                ->orWhere('talle_id', 'like', '%' . $this->search . '%')
-                ->orWhere('codigo', 'like', '%' . $this->search . '%')
-                ->orWhere('serie', 'like', '%' . $this->search . '%')
-                ->orWhere('estado_id', 'like', '%' . $this->search . '%')
+            'implantes' => Implante::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('id', 'like', '%' . $this->search . '%')
+                        ->orWhere('modelo_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('talle_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('codigo', 'like', '%' . $this->search . '%')
+                        ->orWhere('serie', 'like', '%' . $this->search . '%')
+                        ->orWhere('estado_id', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate(),
             'modelos' => Modelo::all(),

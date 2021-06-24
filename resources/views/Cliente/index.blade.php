@@ -38,6 +38,20 @@
     window.addEventListener('showModal', event => {
         $("#addCliente").modal("show");
         $("#editCliente ").modal("show");
-    })  
+    })
+    window.addEventListener('closeModalDireccion', event => {
+        $("#addDireccion").modal("hide");
+        $("#editDireccion").modal("hide");
+    })
+    window.addEventListener('showModalDireccion', event => {
+        $("#addDireccion").modal("show");
+        $("#editDireccion ").modal("show");
+    })
+    window.addEventListener('showDirecciones', event => {
+        $("#direcciones").modal("show");
+    })
+    window.addEventListener('closeDirecciones', event => {
+        $("#direcciones").modal("hide");
+    })
 </script>
 @stop

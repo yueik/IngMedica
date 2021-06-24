@@ -21,8 +21,10 @@ class TablaTalle extends Component
     public function render()
     {
         return view('livewire.talle.tabla-talle', [
-            'talles' => Talle::where('id', 'like', '%' . $this->search . '%')
-                ->orWhere('talle', 'like', '%' . $this->search . '%')
+            'talles' => Talle::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('talle', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);

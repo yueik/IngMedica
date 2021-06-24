@@ -46,7 +46,7 @@ class DireccionClienteController extends Controller
      */
     public function show($id)
     {
-        return view('DireccionCliente.index')->with('cliente_id', $id);
+        //
     }
 
     /**

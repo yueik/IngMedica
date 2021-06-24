@@ -280,7 +280,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'CONFIGURACIÓN DE CUENTA'],
+        /*['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
             'text' => 'Perfil',
             'url'  => 'user/profile',
@@ -306,7 +306,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

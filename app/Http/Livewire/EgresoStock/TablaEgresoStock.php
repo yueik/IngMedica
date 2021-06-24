@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\EgresoStock;
 use App\Models\EstadoEgreso;
 use App\Models\Cliente;
+use App\Models\DetalleEgreso;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,12 +24,15 @@ class TablaEgresoStock extends Component
     public function render()
     {
         return view('livewire.egreso-stock.tabla-egreso-stock', [
-            'egresos' => EgresoStock::where('id', 'like', '%' . $this->search . '%')
-                ->orWhere('fecha', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_id', 'like', '%' . $this->search . '%')
-                ->orWhere('montoFinal', 'like', '%' . $this->search . '%')
-                ->orWhere('estado_id', 'like', '%' . $this->search . '%')
-                ->orWhere('observacion', 'like', '%' . $this->search . '%')
+            'egresos' => EgresoStock::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('id', 'like', '%' . $this->search . '%')
+                        ->orWhere('fecha', 'like', '%' . $this->search . '%')
+                        ->orWhere('cliente_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('montoFinal', 'like', '%' . $this->search . '%')
+                        ->orWhere('estado_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('observacion', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate(),
             'clientes' => Cliente::all(),
@@ -40,6 +44,7 @@ class TablaEgresoStock extends Component
     {
         $this->state = [];
         $this->editModal = false;
+        $this->emit('detallesEgreso', 0);
         $this->dispatchBrowserEvent("showModal");
     }
 
@@ -55,6 +60,10 @@ class TablaEgresoStock extends Component
 
         EgresoStock::create($validar);
 
+        $egreso = EgresoStock::select('id')->orderByDesc('id')->limit(1)->get();
+        DetalleEgreso::where('egreso_stock_id', 0)
+            ->update(['egreso_stock_id' => $egreso[0]['id']]);
+
         $this->emit('alert', 'Egreso registrado con éxito');
         $this->dispatchBrowserEvent('closeModal');
     }
@@ -67,6 +76,7 @@ class TablaEgresoStock extends Component
 
         $this->state = $egreso_stock->toArray();
 
+        $this->emit('detallesEgreso', $egreso_stock->id);
         $this->dispatchBrowserEvent("showModal");
     }
 
@@ -91,6 +101,8 @@ class TablaEgresoStock extends Component
         EgresoStock::destroy($id);
     }
 
+
+
     public function order($sort)
     {
         if ($this->sort == $sort) {
@@ -103,5 +115,10 @@ class TablaEgresoStock extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function cerrarModal()
+    {
+        $this->dispatchBrowserEvent('closeModal');
     }
 }

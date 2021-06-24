@@ -21,8 +21,10 @@ class TablaEstadoInsumo extends Component
     public function render()
     {
         return view('livewire.estado-insumo.tabla-estado-insumo', [
-            'estados' => EstadoInsumo::where('id', 'like', '%' . $this->search . '%')
-                ->orWhere('estado', 'like', '%' . $this->search . '%')
+            'estados' => EstadoInsumo::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('estado', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);

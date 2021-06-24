@@ -21,11 +21,14 @@ class TablaCliente extends Component
     public function render()
     {
         return view('livewire.cliente.tabla-cliente', [
-            'clientes' => Cliente::where('cliente', 'like', '%' . $this->search . '%')
-                ->orWhere('cuit', 'like', '%' . $this->search . '%')
-                ->orWhere('documento', 'like', '%' . $this->search . '%')
-                ->orWhere('telefono', 'like', '%' . $this->search . '%')
-                ->orWhere('mail', 'like', '%' . $this->search . '%')
+            'clientes' => Cliente::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('cliente', 'like', '%' . $this->search . '%')
+                        ->orWhere('cuit', 'like', '%' . $this->search . '%')
+                        ->orWhere('documento', 'like', '%' . $this->search . '%')
+                        ->orWhere('telefono', 'like', '%' . $this->search . '%')
+                        ->orWhere('mail', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);
@@ -84,6 +87,12 @@ class TablaCliente extends Component
     public function destroy($id)
     {
         Cliente::destroy($id);
+    }
+
+    public function direccionesCliente(Cliente $cliente)
+    {
+        $this->emit('direccionesCliente', $cliente->id);
+        $this->emit('render');
     }
 
     public function order($sort)

@@ -20,37 +20,44 @@ class TablaDireccionCliente extends Component
     public $direction = 'desc';
     public $state = [];
 
-    public function mount($cliente_id)
+    protected $listeners = ['direccionesCliente', 'render'];
+
+    public function direccionesCliente($cliente_id)
     {
         $this->cliente_id = $cliente_id;
+        $this->dispatchBrowserEvent("showDirecciones");
     }
 
     public function render()
     {
         return view('livewire.direccion-cliente.tabla-direccion-cliente', [
-            'direcciones' => DireccionCliente::where('cliente_id', 'like', $this->cliente_id)
-                ->orWhere('calle', 'like', '%' . $this->search . '%')
-                ->orWhere('numero', 'like', '%' . $this->search . '%')
-                ->orWhere('piso', 'like', '%' . $this->search . '%')
-                ->orWhere('dpto', 'like', '%' . $this->search . '%')
-                ->orWhere('barrio', 'like', '%' . $this->search . '%')
-                ->orWhere('codigoPostal', 'like', '%' . $this->search . '%')
-                ->orWhere('observacion', 'like', '%' . $this->search . '%')
+            'direcciones' => DireccionCliente::where('cliente_id', '=', $this->cliente_id)
+                ->where(function ($query) {
+                    $query->orWhere('numero', 'like', '%' . $this->search . '%')
+                        ->orWhere('calle', 'like', '%' . $this->search . '%')
+                        ->orWhere('piso', 'like', '%' . $this->search . '%')
+                        ->orWhere('dpto', 'like', '%' . $this->search . '%')
+                        ->orWhere('barrio', 'like', '%' . $this->search . '%')
+                        ->orWhere('codigoPostal', 'like', '%' . $this->search . '%')
+                        ->orWhere('observacion', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);
+        
     }
 
     public function addDireccion()
     {
-        $this->state = [];
+        $this->state = ['cliente_id' => $this->cliente_id];
         $this->editModal = false;
-        $this->dispatchBrowserEvent("showModal");
+        $this->dispatchBrowserEvent("showModalDireccion");
     }
 
     public function createDireccion()
     {
         $validar = Validator::make($this->state, [
+            'cliente_id' => 'required',
             'calle' => 'required',
             'numero' => 'required',
             'piso' => 'required',
@@ -63,7 +70,7 @@ class TablaDireccionCliente extends Component
         DireccionCliente::create($validar);
 
         $this->emit('alert', 'Dirección registrada con éxito');
-        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('closeModalDireccion');
     }
 
     public function editDireccion(DireccionCliente $direccion)
@@ -74,12 +81,13 @@ class TablaDireccionCliente extends Component
 
         $this->state = $direccion->toArray();
 
-        $this->dispatchBrowserEvent("showModal");
+        $this->dispatchBrowserEvent("showModalDireccion");
     }
 
     public function updateDireccion()
     {
         $validar = Validator::make($this->state, [
+            'cliente_id' => 'required',
             'calle' => 'required',
             'numero' => 'required',
             'piso' => 'required',
@@ -92,7 +100,7 @@ class TablaDireccionCliente extends Component
         $this->direccion->update($validar);
 
         $this->emit('alert', 'Dirección actualizada con éxito');
-        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('closeModalDireccion');
     }
 
     public function destroy($id)

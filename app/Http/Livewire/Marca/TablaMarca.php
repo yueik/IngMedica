@@ -21,8 +21,10 @@ class TablaMarca extends Component
     public function render()
     {
         return view('livewire.marca.tabla-marca', [
-            'marcas' => Marca::where('id', 'like', '%' . $this->search . '%')
-                ->orWhere('marca', 'like', '%' . $this->search . '%')
+            'marcas' => Marca::where('activo', '=', 1)
+                ->where(function ($query) {
+                    $query->orWhere('marca', 'like', '%' . $this->search . '%');
+                })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate()
         ]);

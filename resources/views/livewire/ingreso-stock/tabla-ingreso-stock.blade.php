@@ -1,4 +1,5 @@
 <div>
+
     <div class="px-0 py-3 flex justify-between">
         <button wire:click.prevent="addIngresoStock" type="button" class="btn btn-primary">Agregar</button>
         <input type="text" wire:model="search" placeholder="Buscar...">
@@ -6,9 +7,9 @@
 
     <div class="modal fade" wire:ignore.self id="addIngresoStock" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blue-500">
+        <div class="modal-dialog" style="min-width: 85%;" role="document">
+            <div class="modal-content p-2">
+                <div class="modal-header mb-2 bg-blue-500">
                     <h5 class="modal-title" id="exampleModalLabel">
                         @if($editModal)
                         <span class="text-white">Editar Ingreso de Stock</span>
@@ -16,28 +17,33 @@
                         <span class="text-white">Registrar Ingreso de Stock</span>
                         @endif
                     </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" wire:click.prevent="cerrarModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form wire:submit.prevent="{{ $editModal ? 'updateIngresoStock' : 'createIngresoStock' }}">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="fecha">Fecha</label>
-                            <input type="date" class="form-control @error('fecha') is-invalid @enderror" name="fecha"
-                                wire:model.defer="state.fecha">
-                            @error('fecha')
-                            <div class="invalid-feedback">
-                                {{$message}}
+                        <div class="row">
+                            <div class="form-group col-3">
+                                <label for="fecha">Fecha</label>
+                                <input type="date" class="form-control @error('fecha') is-invalid @enderror"
+                                    name="fecha" wire:model.defer="state.fecha">
+                                @error('fecha')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @enderror
+                            <div class="form-group col-3">
+                                <label for="observacion">Observación</label>
+                                <input type="text" class="form-control" id="observacion"
+                                    wire:model.defer="state.observacion">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="observacion">Observación</label>
-                            <input type="text" class="form-control" id="observacion"
-                                wire:model.defer="state.observacion">                            
-                        </div>
+
+                        @livewire('detalle-ingreso.tabla-detalle-ingreso')
+
                     </div>
                     <div class="modal-footer align-items-center">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -58,9 +64,9 @@
             <thead class="bg-gray-600">
                 <tr>
                     <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
                         wire:click="order('id')">
-                        ID
+                        Código
                         @if($sort =='id')
                         @if($direction == 'asc')
                         <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
@@ -72,7 +78,7 @@
                         @endif
                     </th>
                     <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
                         wire:click="order('fecha')">
                         Fecha
                         @if($sort =='fecha')
@@ -86,7 +92,7 @@
                         @endif
                     </th>
                     <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider"
+                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
                         wire:click="order('observacion')">
                         Observación
                         @if($sort =='observacion')
@@ -100,12 +106,12 @@
                         @endif
                     </th>
                     <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
                         Acciones
                     </th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="bg-white text-center divide-y divide-gray-200">
                 @foreach ($ingresos as $ingreso)
                 <tr>
                     <td>{{ $ingreso->id }}</td>
