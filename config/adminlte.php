@@ -291,22 +291,23 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        ['header' => 'labels'],
+        */
+        ['header' => 'REPORTES'],
         [
-            'text'       => 'important',
+            'text'       => 'Implantes Por Modelo',
             'icon_color' => 'red',
-            'url'        => '#',
+            'url'        => 'Reportes',
         ],
         [
-            'text'       => 'warning',
+            'text'       => 'Ventas por Modelo',
+            'icon_color' => 'green',
+            'url'        => 'ReportesMensuales',
+        ],
+        [
+            'text'       => 'Pedidos Mensuales',
             'icon_color' => 'yellow',
             'url'        => '#',
         ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],*/
     ],
 
     /*

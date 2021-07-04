@@ -30,4 +30,7 @@ class Implante extends Model
     public function estado() {
         return $this->belongsTo(EstadoInsumo::class);
     }
+    public function detalle_egresos() {
+        return $this->hasMany(Modelo::class);
+    }
 }

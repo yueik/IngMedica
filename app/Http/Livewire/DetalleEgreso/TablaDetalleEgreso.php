@@ -59,7 +59,7 @@ class TablaDetalleEgreso extends Component
 
         DetalleEgreso::create($validar);
         //dd($this->state['implante_id']);
-        Implante::find($this->state['implante_id'])->update(['estado_id' => 2]);
+        //Implante::find($this->state['implante_id'])->update(['estado_id' => 2]);
 
         $this->emit('alert', 'Detalle de Egreso registrado con éxito');
         $this->dispatchBrowserEvent('closeModalDetalle');

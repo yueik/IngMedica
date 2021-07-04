@@ -11,6 +11,8 @@ use App\Http\Controllers\EgresoStockController;
 use App\Http\Controllers\IngresoStockController;
 use App\Http\Controllers\EstadoEgresoController;
 use App\Http\Controllers\EstadoInsumoController;
+use App\Http\Controllers\ReportesController;
+use App\Http\Controllers\ReportesTemporalesController;
 
 
 /*Route::get('/', function () {
@@ -29,6 +31,8 @@ Route::resource('/Egresos', EgresoStockController::class);
 Route::resource('/Ingresos', IngresoStockController::class);
 Route::resource('/EstadosEgreso', EstadoEgresoController::class);
 Route::resource('/EstadosInsumo', EstadoInsumoController::class);
+Route::get('/Reportes', [ReportesController::class, 'cantModelos']);
+Route::get('/ReportesMensuales', [ReportesController::class, 'ventasModelos']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

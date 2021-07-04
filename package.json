@@ -21,6 +21,7 @@
         "tailwindcss": "^2.0.1"
     },
     "dependencies": {
+        "chart.js": "^3.4.0",
         "sweetalert2": "^11.0.11"
     }
 }
