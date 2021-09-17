@@ -39,7 +39,6 @@ class ReportesController extends Controller
         $chartjs = app()->chartjs
             ->name('barChartTest')
             ->type('bar')
-            ->size(['width' => 300, 'height' => 200])
             ->labels($modelos)
             ->datasets([
                 [

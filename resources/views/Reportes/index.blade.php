@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div style="width:100%;">
+<div style="width:100%; max-height:700px;">
     {!! $chartjs->render() !!}
 </div>
 

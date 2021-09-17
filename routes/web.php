@@ -13,6 +13,7 @@ use App\Http\Controllers\EstadoEgresoController;
 use App\Http\Controllers\EstadoInsumoController;
 use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\ReportesTemporalesController;
+use App\Http\Controllers\Remito;
 
 
 /*Route::get('/', function () {
@@ -21,6 +22,7 @@ use App\Http\Controllers\ReportesTemporalesController;
 
 //Route::get('/', [ImplanteController::class, 'index'])->name('index');
 //Route::delete('/', [ImplanteController::class, 'destroy'])->name('implantes.destroy');
+Route::resource('/', ImplanteController::class);
 Route::resource('/Implantes', ImplanteController::class);
 Route::resource('/Marcas', MarcaController::class);
 Route::resource('/Modelos', ModeloController::class);
@@ -33,6 +35,10 @@ Route::resource('/EstadosEgreso', EstadoEgresoController::class);
 Route::resource('/EstadosInsumo', EstadoInsumoController::class);
 Route::get('/Reportes', [ReportesController::class, 'cantModelos']);
 Route::get('/ReportesMensuales', [ReportesController::class, 'ventasModelos']);
+
+Route::get('/Remito/{egreso_id}', [Remito::class, 'index'])->name('Remito');
+
+Route::get('/Remito/pdf/{egreso_id}', [Remito::class, 'pdf'])->name('Remito/pdf');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

@@ -303,11 +303,11 @@ return [
             'icon_color' => 'green',
             'url'        => 'ReportesMensuales',
         ],
-        [
+        /*[
             'text'       => 'Pedidos Mensuales',
             'icon_color' => 'yellow',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

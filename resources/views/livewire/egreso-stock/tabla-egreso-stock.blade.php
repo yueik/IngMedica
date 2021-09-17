@@ -206,6 +206,8 @@
                             <i class="fas fa-pencil-alt"></i>
                         </a>
 
+                        <a href="{{ route('Remito', $egreso->id) }}" type="button" class="btn btn-secondary"><i class="fas fa-print"></i></a>
+
                         <button wire:click="destroy({{ $egreso->id }})" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                         </button>
