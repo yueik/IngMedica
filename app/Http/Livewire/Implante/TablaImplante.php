@@ -35,9 +35,9 @@ class TablaImplante extends Component
                 })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate(),
-            'modelos' => Modelo::all(),
-            'talles' => Talle::all(),
-            'estados' => EstadoInsumo::all(),
+            'modelos' => Modelo::where('activo', '=', 1)->get(),
+            'talles' => Talle::where('activo', '=', 1)->get(),
+            'estados' => EstadoInsumo::where('activo', '=', 1)->get(),
         ]);
     }
 

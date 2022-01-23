@@ -1,7 +1,7 @@
 <div>
 
     <div class="px-0 py-3 flex justify-between">
-        <button wire:click.prevent="addIngresoStock" type="button" class="btn btn-primary">Agregar</button>
+        <button wire:click.prevent="addIngresoStock" type="button" class="btn btn-primary">Agregar Ingreso</button>
         <input type="text" wire:model="search" placeholder="Buscar...">
     </div>
 
@@ -46,7 +46,7 @@
 
                     </div>
                     <div class="modal-footer align-items-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" wire:click.prevent="cerrarModal">Cerrar</button>
                         <button type="submit" class="btn btn-primary" wire:loading.remove
                             wire:target="save">Guardar</button>
                         <img src="{{ asset('img/loading.gif') }}" height="50" width="50" wire:loading wire:target="save"
@@ -65,20 +65,6 @@
                 <tr>
                     <th scope="col"
                         class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-                        wire:click="order('id')">
-                        Código
-                        @if($sort =='id')
-                        @if($direction == 'asc')
-                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                        @else
-                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                        @endif
-                        @else
-                        <i class="fas fa-sort float-right mt-1"></i>
-                        @endif
-                    </th>
-                    <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
                         wire:click="order('fecha')">
                         Fecha
                         @if($sort =='fecha')
@@ -90,6 +76,10 @@
                         @else
                         <i class="fas fa-sort float-right mt-1"></i>
                         @endif
+                    </th>
+                    <th scope="col"
+                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
+                        Nº de Implantes                        
                     </th>
                     <th scope="col"
                         class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
@@ -114,8 +104,8 @@
             <tbody class="bg-white text-center divide-y divide-gray-200">
                 @foreach ($ingresos as $ingreso)
                 <tr>
-                    <td>{{ $ingreso->id }}</td>
                     <td>{{ $ingreso->fecha }}</td>
+                    <td>{{ $ingreso->n_cant_detalles }}</td>
                     <td>{{ $ingreso->observacion }}</td>
                     <td>
                         <a type="button" class="btn btn-warning" wire:click.prevent="editIngresoStock({{ $ingreso }})">

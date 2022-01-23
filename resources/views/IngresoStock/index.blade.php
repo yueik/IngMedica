@@ -45,7 +45,7 @@
   })
   window.addEventListener('showModalDetalle', event => {
     $("#addDetalle").modal("show");
-    $("#editDetalle ").modal("show");
+    $("#editDetalle").modal("show");
   })
 </script>
 @stop

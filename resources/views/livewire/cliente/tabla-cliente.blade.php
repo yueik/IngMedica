@@ -96,20 +96,6 @@
         <tr>
           <th scope="col"
             class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-            wire:click="order('id')">
-            Código
-            @if($sort =='id')
-            @if($direction == 'asc')
-            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-            @else
-            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-            @endif
-            @else
-            <i class="fas fa-sort float-right mt-1"></i>
-            @endif
-          </th>
-          <th scope="col"
-            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('cliente')">
             Cliente
             @if($sort =='cliente')
@@ -187,7 +173,6 @@
       <tbody class="bg-white text-center divide-y divide-gray-200">
         @foreach ($clientes as $cliente)
         <tr>
-            <td>{{ $cliente->id }}</td>
             <td>{{ $cliente->cliente }}</td>
             <td>{{ $cliente->cuit }}</td>
             <td>{{ $cliente->documento }}</td>

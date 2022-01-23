@@ -1,6 +1,6 @@
 <div>
     <div class="px-0 py-3 flex justify-between">
-        <button wire:click.prevent="addEgresoStock" type="button" class="btn btn-primary">Agregar</button>
+        <button wire:click.prevent="addEgresoStock" type="button" class="btn btn-primary">Agregar Egreso</button>
         <input type="text" wire:model="search" placeholder="Buscar...">
     </div>
 
@@ -104,20 +104,6 @@
                 <tr>
                     <th scope="col"
                         class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-                        wire:click="order('id')">
-                        Código
-                        @if($sort =='id')
-                        @if($direction == 'asc')
-                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                        @else
-                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                        @endif
-                        @else
-                        <i class="fas fa-sort float-right mt-1"></i>
-                        @endif
-                    </th>
-                    <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
                         wire:click="order('fecha')">
                         Fecha
                         @if($sort =='fecha')
@@ -149,6 +135,20 @@
                         wire:click="order('montoFinal')">
                         Monto
                         @if($sort =='montoFinal')
+                        @if($direction == 'asc')
+                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                        @else
+                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                        @endif
+                        @else
+                        <i class="fas fa-sort float-right mt-1"></i>
+                        @endif
+                    </th>
+                    <th scope="col"
+                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
+                        wire:click="order('n_cant_detalles')">
+                        Nº de Implantes
+                        @if($sort =='n_cant_detalles')
                         @if($direction == 'asc')
                         <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                         @else
@@ -195,10 +195,10 @@
             <tbody class="bg-white text-center divide-y divide-gray-200">
                 @foreach ($egresos as $egreso)
                 <tr>
-                    <td>{{ $egreso->id }}</td>
                     <td>{{ $egreso->fecha }}</td>
                     <td>{{ $egreso->cliente->cliente }}</td>
                     <td>{{ $egreso->montoFinal }}</td>
+                    <td>{{ $egreso->n_cant_detalles }}</td>
                     <td>{{ $egreso->estado->estado }}</td>
                     <td>{{ $egreso->observacion }}</td>
                     <td>

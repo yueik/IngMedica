@@ -17,6 +17,11 @@ class IngresoStock extends Model
     protected $attributes = ['activo' => 1];
 
     public function detalle_ingresos() {
-        return $this->belongsTo(DetalleIngreso::class);
+        return $this->hasMany(DetalleIngreso::class);
+    }
+
+    public function getNCantDetallesAttribute()
+    {
+        return $this->detalle_ingresos->count();
     }
 }

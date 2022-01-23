@@ -30,4 +30,9 @@ class EgresoStock extends Model
     public function detalle_egresos() {
         return $this->hasMany(DetalleEgreso::class);
     }
+
+    public function getNCantDetallesAttribute()
+    {
+        return $this->detalle_egresos->count();
+    }
 }

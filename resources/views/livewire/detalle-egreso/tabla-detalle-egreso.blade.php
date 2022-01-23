@@ -1,6 +1,6 @@
 <div>
     <div class="px-0 py-3 flex justify-between">
-        <button wire:click.prevent="addDetalle" type="button" class="btn btn-primary">Agregar</button>
+        <button wire:click.prevent="addDetalle" type="button" class="btn btn-primary">Agregar Implante</button>
         <input type="text" wire:model="search" placeholder="Buscar...">
     </div>
 
@@ -127,12 +127,12 @@
                             <i class="fas fa-pencil-alt"></i>
                         </button>
 
-                        <button wire:click="{{ $detalle->implante->estado->estado == 'Concesion' ? 'devolucion' : 'concesion' }}({{ $detalle->implante->id }})" 
+                        <button wire:click.prevent="{{ $detalle->implante->estado->estado == 'Concesion' ? 'devolucion' : 'concesion' }}({{ $detalle->implante->id }})" 
                             class="btn btn-{{ $detalle->implante->estado->estado == 'Concesion' ? 'success' : 'danger' }}">
                             <i class="fas fa-{{ $detalle->implante->estado->estado == 'Concesion' ? 'check' : 'times' }}"></i>
                         </button>
 
-                        <button wire:click="destroy({{ $detalle->id }})" class="btn btn-danger">
+                        <button wire:click.prevent="destroy({{ $detalle->id }})" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>

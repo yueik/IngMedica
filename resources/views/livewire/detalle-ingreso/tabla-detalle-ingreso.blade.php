@@ -1,19 +1,19 @@
 <div>
     <div class="px-0 py-3 flex justify-between">
-      <button wire:click.prevent="addDetalle" type="button" class="btn btn-primary">Agregar</button>
+      <button wire:click.prevent="addDetalle" type="button" class="btn btn-primary">Agregar Implante</button>
       <input type="text" wire:model="search" placeholder="Buscar...">
     </div>
   
     <div class="modal fade" wire:ignore.self id="addDetalle" tabindex="-1" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog modal-md" role="document">
         <div class="modal-content p-2">
           <div class="modal-header mb-2 bg-blue-500">
             <h5 class="modal-title" id="exampleModalLabel">
               @if($editModal)
-              <span class="text-white">Editar Detalle</span>
+              <span class="text-white">Editar Implante</span>
               @else
-              <span class="text-white">Registrar Detalle</span>
+              <span class="text-white">Registrar Implante</span>
               @endif
             </h5>
             <button type="button" class="close" wire:click.prevent="cerrarModalDetalle">
@@ -22,7 +22,7 @@
           </div>
           <form id="formDetalleIngreso" >
             @csrf
-            <div class="modal-body grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="modal-body grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
               <div class="form-group">
                 <label for="modelo_id">Modelo</label>
                 <select class="form-control @error('modelo_id') is-invalid @enderror" name="modelo_id"
@@ -118,9 +118,9 @@
           <tr>
             <th scope="col"
               class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-              wire:click="order('id')">
-              Código
-              @if($sort =='id')
+              wire:click="order('implante_modelo')">
+              Modelo
+              @if($sort =='implante_modelo')
               @if($direction == 'asc')
               <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
               @else
@@ -132,9 +132,9 @@
             </th>
             <th scope="col"
               class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-              wire:click="order('implante_id')">
-              Implante
-              @if($sort =='implante_id')
+              wire:click="order('implante_talle')">
+              Talle
+              @if($sort =='implante_talle')
               @if($direction == 'asc')
               <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
               @else
@@ -146,9 +146,9 @@
             </th>
             <th scope="col"
               class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-              wire:click="order('costo')">
-              Costo
-              @if($sort =='costo')
+              wire:click="order('implante_serie')">
+              Serie
+              @if($sort =='implante_serie')
               @if($direction == 'asc')
               <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
               @else
@@ -167,9 +167,9 @@
         <tbody class="bg-white text-center divide-y divide-gray-200">
           @foreach ($detalles as $detalle)
           <tr>
-            <td>{{ $detalle->id }}</td>
-            <td>{{ $detalle->implante->id }}</td>
-            <td>{{ $detalle->costo }}</td>
+            <td>{{ $detalle->implante->modelo->modelo }}</td>
+            <td>{{ $detalle->implante->talle->talle }}</td>
+            <td>{{ $detalle->implante->serie }}</td>
             <td>
               <a type="button" class="btn btn-warning" wire:click.prevent="editDetalle({{ $detalle }})">
                 <i class="fas fa-pencil-alt"></i>

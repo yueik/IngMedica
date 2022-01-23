@@ -22,16 +22,7 @@
         </div>
         <form wire:submit.prevent="{{ $editModal ? 'updateImplante' : 'createImplante' }}">
           @csrf
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="marca_id">Marca</label>
-              <select class="form-control" name="marca_id" wire:model.defer="state.marca_id">
-                @foreach ($implantes as $implante)
-                <option value="{{ $implante->modelo->marca->id }}">
-                  {{ $implante->modelo->marca->marca }}</option>
-                @endforeach
-              </select>
-            </div>
+          <div class="modal-body">            
             <div class="form-group">
               <label for="modelo_id">Modelo</label>
               <select class="form-control @error('modelo_id') is-invalid @enderror" name="modelo_id"
@@ -116,10 +107,6 @@
       <thead class="bg-gray-600">
         <tr>
           <th scope="col"
-            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
-            Marca
-          </th>
-          <th scope="col"
             class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
             wire:click="order('modelo_id')">
             Modelo
@@ -190,6 +177,20 @@
             @endif
           </th>
           <th scope="col"
+            class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
+            wire:click="order('ingreso_fecha')">
+            Fecha Ingreso
+            @if($sort =='ingreso_fecha')
+            @if($direction == 'asc')
+            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+            @else
+            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+            @endif
+            @else
+            <i class="fas fa-sort float-right mt-1"></i>
+            @endif
+          </th>
+          <th scope="col"
             class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
             Acciones
           </th>
@@ -198,16 +199,22 @@
       <tbody class="bg-white text-center divide-y divide-gray-200">
         @foreach ($implantes as $implante)
         <tr>
-          <td>{{ $implante->modelo->marca->marca }}</td>
           <td>{{ $implante->modelo->modelo }}</td>
           <td>{{ $implante->talle->talle }}</td>
           <td>{{ $implante->codigo }}</td>
           <td>{{ $implante->serie }}</td>
           <td>{{ $implante->estado->estado}}</td>
+          <td>{{ $implante->serie}}</td>
           <td>
             <a type="button" class="btn btn-warning" wire:click.prevent="editImplante({{ $implante }})">
               <i class="fas fa-pencil-alt"></i>
             </a>
+
+            @if($implante->detalle_egresos->count())
+            <button class="btn btn-success">
+              <i class="fas fa-trash"></i>
+            </button>
+            @endif
 
             <button wire:click="destroy({{ $implante->id }})" class="btn btn-danger">
               <i class="fas fa-trash"></i>

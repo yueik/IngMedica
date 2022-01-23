@@ -94,7 +94,7 @@ class TablaDetalleIngreso extends Component
 
         $this->detalle = $detalle;
 
-        $this->stateDetalle = $detalle->toArray();
+        $this->stateDetalle = $detalle->toArray();        
 
         $this->implante = Implante::find($detalle->implante_id);
         $this->stateImplante = $this->implante->toArray();
@@ -114,9 +114,9 @@ class TablaDetalleIngreso extends Component
 
         $this->implante->update($validar);
 
-        $validar = Validator::make($this->state, [
+        $validar = Validator::make($this->stateDetalle, [
             'ingreso_stock_id' => 'required',
-            'calle' => 'required',
+            'implante_id' => 'required',
             'costo' => 'required',
         ])->validate();
 
