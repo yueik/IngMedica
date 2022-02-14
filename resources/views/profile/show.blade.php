@@ -1,3 +1,12 @@
+@extends('adminlte::page')
+
+@section('title', 'Talles')
+
+@section('content_header')
+    <h1>Listado De Talles</h1>
+@stop
+
+@section('content')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -43,3 +52,4 @@
         </div>
     </div>
 </x-app-layout>
+@stop

@@ -16,7 +16,7 @@ class CreateImplantesTable extends Migration
         Schema::create('implantes', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('marca_id');
+            $table->unsignedBigInteger('modelo_id');
             $table->unsignedBigInteger('talle_id');
             $table->string('codigo');
             $table->string('serie');
@@ -25,7 +25,7 @@ class CreateImplantesTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('marca_id')->references('id')->on('marcas');
+            $table->foreign('modelo_id')->references('id')->on('modelos');
             $table->foreign('talle_id')->references('id')->on('talles');
             $table->foreign('estado_id')->references('id')->on('estado_insumos');
         });

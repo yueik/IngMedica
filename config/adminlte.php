@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Ingeniería Médica',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Ingeniería</b> Médica',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Ingeniería Médica',
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
 
@@ -101,12 +101,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -226,7 +226,7 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
@@ -235,77 +235,79 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Ingresos',
+            'url'         => 'Ingresos',
+            'icon'        => 'fas fa-fw fa-truck-loading',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'        => 'Implantes',
+            'url'         => 'Implantes',
+            'icon'        => 'fas fa-fw fa-boxes',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'        => 'Egresos',
+            'url'         => 'Egresos',
+            'icon'        => 'fas fa-fw fa-shipping-fast',
+        ],
+        [
+            'text'        => 'Clientes',
+            'url'         => 'Clientes',
+            'icon'        => 'fas fa-fw fa-user-md',
+        ],
+        [
+            'text'    => 'Mantenimiento',
+            'icon'    => 'fas fa-fw fa-database',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Marcas',
+                    'url'  => 'Marcas',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Modelos',
+                    'url'  => 'Modelos',                    
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Talles',
+                    'url'  => 'Talles',
+                ],
+                [
+                    'text' => 'Estados de Egreso',
+                    'url'  => 'EstadosEgreso',
+                ],
+                [
+                    'text' => 'Estados de Implante',
+                    'url'  => 'EstadosInsumo',
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        /*['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'Perfil',
+            'url'  => 'user/profile',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text'       => 'warning',
+            'text' => 'Cambiar Contraseña',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        */
+        ['header' => 'REPORTES'],
+        [
+            'text'       => 'Implantes Por Modelo',
+            'icon_color' => 'red',
+            'url'        => 'Reportes',
+        ],
+        [
+            'text'       => 'Ventas por Modelo',
+            'icon_color' => 'green',
+            'url'        => 'ReportesMensuales',
+        ],
+        /*[
+            'text'       => 'Pedidos Mensuales',
             'icon_color' => 'yellow',
             'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*
@@ -426,5 +428,5 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
