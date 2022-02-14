@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="modal-footer align-items-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" wire:click.prevent="cerrarModalDetalle">Cerrar</button>
                         <button type="button" class="btn btn-primary" wire:loading.remove
                             wire:target="save" wire:click.prevent="{{ $editModal ? 'updateDetalle' : 'createDetalle' }}">Guardar</button>
                         <img src="{{ asset('img/loading.gif') }}" height="50" width="50" wire:loading wire:target="save"

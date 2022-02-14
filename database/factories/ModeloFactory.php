@@ -22,9 +22,9 @@ class ModeloFactory extends Factory
     public function definition()
     {
         return [
-            'modelo' => $this->faker->name(),
+            'modelo' => $this->faker->word,
+            'precio' => $this->faker->randomDigit,
             'activo' => 1,
-
             'marca_id' => rand(1,2)
         ];
     }

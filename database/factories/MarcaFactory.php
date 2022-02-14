@@ -22,7 +22,7 @@ class MarcaFactory extends Factory
     public function definition()
     {
         return [
-            'marca' => $this->faker->name,
+            'marca' => $this->faker->word,
             'activo' => 1
         ];
     }

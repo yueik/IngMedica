@@ -24,6 +24,6 @@ class DetalleIngreso extends Model
 
     public function ingreso_stock()
     {
-        return $this->belongsTo(IngresoStock::class);
+        return $this->belongsTo(IngresoStock::class)->withDefault();
     }
 }

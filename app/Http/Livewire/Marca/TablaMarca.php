@@ -14,8 +14,8 @@ class TablaMarca extends Component
     public $marca;
     public $search;
     public $editModal = false;
-    public $sort = 'id';
-    public $direction = 'desc';
+    public $sort = 'marca';
+    public $direction = 'asc';
     public $state = [];
 
     public function render()

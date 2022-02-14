@@ -5,7 +5,7 @@
             <div class="modal-content p-2">
                 <div class="modal-header mb-2 bg-green-600">
                     <h5 class="modal-title text-white" id="exampleModalLabel">
-                        <b>Listado de Direcciones de {{$cliente_id}}</b>
+                        <b>Listado de Direcciones de {{$cliente}}</b>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

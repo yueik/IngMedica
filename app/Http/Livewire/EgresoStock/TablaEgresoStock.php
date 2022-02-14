@@ -23,6 +23,7 @@ class TablaEgresoStock extends Component
 
     public function render()
     {
+        DetalleEgreso::where('egreso_stock_id', 0)->delete();
         return view('livewire.egreso-stock.tabla-egreso-stock', [
             'egresos' => EgresoStock::where('activo', '=', 1)
                 ->where(function ($query) {
@@ -98,10 +99,9 @@ class TablaEgresoStock extends Component
 
     public function destroy($id)
     {
+        DetalleEgreso::where('egreso_stock_id', $id)->delete();
         EgresoStock::destroy($id);
     }
-
-
 
     public function order($sort)
     {

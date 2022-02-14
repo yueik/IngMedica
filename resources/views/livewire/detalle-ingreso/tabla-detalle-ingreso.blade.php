@@ -26,7 +26,7 @@
               <div class="form-group">
                 <label for="modelo_id">Modelo</label>
                 <select class="form-control @error('modelo_id') is-invalid @enderror" name="modelo_id"
-                  wire:model.defer="stateImplante.modelo_id">
+                  wire:model="stateImplante.modelo_id">
                   <option value=""></option>
                   @foreach ($modelos as $modelo)
                   <option value="{{ $modelo->id }}">{{ $modelo->modelo }}</option>
@@ -91,7 +91,7 @@
               <div class="form-group">
                 <label for="costo">Costo</label>
                 <input type="text" class="form-control @error('costo') is-invalid @enderror" id="costo"
-                  wire:model.defer="stateDetalle.costo">
+                  wire:model="stateDetalle.costo" disabled>
                 @error('costo')
                 <div class="invalid-feedback">
                   {{$message}}
@@ -100,7 +100,7 @@
               </div>
             </div>
             <div class="modal-footer align-items-center">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-secondary" wire:click.prevent="cerrarModalDetalle">Cerrar</button>
               <button type="button" class="btn btn-primary" wire:loading.remove wire:target="save" wire:click.prevent="{{ $editModal ? 'updateDetalle' : 'createDetalle' }}">Guardar</button>
               <img src="{{ asset('img/loading.gif') }}" height="50" width="50" wire:loading wire:target="save"
                 alt="Cargando..">

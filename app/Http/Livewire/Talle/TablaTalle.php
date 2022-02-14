@@ -15,7 +15,7 @@ class TablaTalle extends Component
     public $search;
     public $editModal = false;
     public $sort = 'id';
-    public $direction = 'desc';
+    public $direction = 'asc';
     public $state = [];
 
     public function render()

@@ -53,7 +53,7 @@ class Remito extends Controller
      <h5 align="center" style="margin-bottom: 50px;">'.date('d/m/Y').'</h5>
      <p><b>Señor (es)</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Obra Social</p>
      <p>PRESENTE:&nbsp;&nbsp;&nbsp;&nbsp; '.$cliente->cliente->cliente.'</p>
-     <p>Paciente:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paciente</p>
+     <!-- <p>Paciente:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paciente</p>-->
      <table width="100%" style="border-collapse: collapse; border: 0px; margin-top:40px;">
       <tr>
     <th style="border: 1px solid; padding:12px;" width="10%">Cantidad</th>

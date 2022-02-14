@@ -14,8 +14,8 @@ class TablaModelo extends Component
     public $modelo;
     public $search;
     public $editModal = false;
-    public $sort = 'id';
-    public $direction = 'desc';
+    public $sort = 'marca_id';
+    public $direction = 'asc';
     public $state = [];
 
     public function render()

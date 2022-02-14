@@ -29,6 +29,12 @@ class TablaDetalleEgreso extends Component
 
     public function render()
     {
+        $arrayIn = [];
+        $implantes = Implante::join('detalle_egresos', 'implantes.id', '=', 'detalle_egresos.implante_id')->get();
+        foreach ($implantes as $implante) {
+            array_push($arrayIn, $implante->implante_id);
+        };
+        $implantes = Implante::whereNotIn('id', $arrayIn)->get();
         return view('livewire.detalle-egreso.tabla-detalle-egreso', [
             'detalles' => DetalleEgreso::where('egreso_stock_id', '=', $this->egreso_stock_id)
                 ->where('activo', '=', 1)
@@ -38,7 +44,8 @@ class TablaDetalleEgreso extends Component
                 })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate(),
-            'implantes' => Implante::all(),
+
+            'implantes' => $implantes,
         ]);
     }
 
@@ -84,8 +91,8 @@ class TablaDetalleEgreso extends Component
             'implante_id' => 'required',
             'monto' => 'required',
         ])->validate();
-        
-        if ($this->detalle->id != $this->state['implante_id']){
+
+        if ($this->detalle->id != $this->state['implante_id']) {
             Implante::find($this->detalle->id)->update(['estado_id' => 1]);
             Implante::find($this->state['implante_id'])->update(['estado_id' => 2]);
         }

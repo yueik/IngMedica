@@ -34,6 +34,10 @@ class TablaDetalleIngreso extends Component
     {
         $this->ingreso_stock_id = $ingreso_stock_id;
     }
+    public function mount()
+    {
+        $this->stateImplante = ['modelo_id' => 1];
+    }
 
     public function render()
     {
@@ -46,16 +50,25 @@ class TablaDetalleIngreso extends Component
             ->orderBy($this->sort, $this->direction)
             ->paginate();
 
+        $modelo = Modelo::find($this->stateImplante['modelo_id']);
+        
+        $this->stateDetalle['costo'] = $modelo->precio;
+        //$this->stateDetalle = ['costo' => $modelo->precio];
+
         return view('livewire.detalle-ingreso.tabla-detalle-ingreso', [
             'detalles' => $detallesTabla,
-            'modelos' => Modelo::all(),
-            'talles' => Talle::all(),
-            'estados' => EstadoInsumo::all(),
+            'modelos' => Modelo::where('activo', '=', 1)
+                ->where('marca_id', '=', 1)
+                ->get(),
+            'talles' => Talle::where('activo', '=', 1)->get(),
+            'estados' => EstadoInsumo::where('activo', '=', 1)->get(),
         ]);
     }
 
     public function addDetalle()
     {
+        $this->stateImplante = [];
+        $this->stateImplante = ['modelo_id' => 1];
         $this->stateDetalle = ['ingreso_stock_id' => $this->ingreso_stock_id];
         $this->editModal = false;
         $this->dispatchBrowserEvent("showModalDetalle");
@@ -94,7 +107,7 @@ class TablaDetalleIngreso extends Component
 
         $this->detalle = $detalle;
 
-        $this->stateDetalle = $detalle->toArray();        
+        $this->stateDetalle = $detalle->toArray();
 
         $this->implante = Implante::find($detalle->implante_id);
         $this->stateImplante = $this->implante->toArray();

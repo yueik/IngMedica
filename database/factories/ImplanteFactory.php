@@ -22,11 +22,11 @@ class ImplanteFactory extends Factory
     public function definition()
     {
         return [
-            'codigo' => $this->faker->rand(1,100),
+            'codigo' => rand(1,100),
+            'serie' => rand(1,100),
             'activo' => 1,
-
-            'marca_id' => rand(1,2),
             'talle_id' => rand(1,5),
+            'modelo_id' => rand(1,5),
             'estado_id' => rand(1,3)
         ];
     }

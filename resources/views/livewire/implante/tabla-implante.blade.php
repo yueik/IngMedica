@@ -204,7 +204,7 @@
           <td>{{ $implante->codigo }}</td>
           <td>{{ $implante->serie }}</td>
           <td>{{ $implante->estado->estado}}</td>
-          <td>{{ $implante->serie}}</td>
+          <td>{{ $implante->detalle_ingreso->ingreso_stock->fecha}}</td>
           <td>
             <a type="button" class="btn btn-warning" wire:click.prevent="editImplante({{ $implante }})">
               <i class="fas fa-pencil-alt"></i>
@@ -216,7 +216,7 @@
             </button>
             @endif
 
-            <button wire:click="destroy({{ $implante->id }})" class="btn btn-danger">
+            <button wire:click="$emit('deleteImplante', {{ $implante->id }})" class="btn btn-danger">
               <i class="fas fa-trash"></i>
             </button>
           </td>

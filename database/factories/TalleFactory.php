@@ -22,7 +22,7 @@ class TalleFactory extends Factory
     public function definition()
     {
         return [
-            'talle' => $this->faker->sentence,
+            'talle' => $this->faker->randomNumber,
             'activo' => 1
         ];
     }

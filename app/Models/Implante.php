@@ -37,7 +37,7 @@ class Implante extends Model
 
     public function detalle_ingreso()
     {
-        return $this->hasOne(DetalleIngreso::class);
+        return $this->hasOne(DetalleIngreso::class)->withDefault();
     }
 
     /*public function ingreso_stock()

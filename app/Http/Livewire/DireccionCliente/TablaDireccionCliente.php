@@ -4,6 +4,7 @@ namespace App\Http\Livewire\DireccionCliente;
 
 use Livewire\Component;
 use App\Models\DireccionCliente;
+use App\Models\Cliente;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 use PHPUnit\Framework\Constraint\DirectoryExists;
@@ -14,6 +15,7 @@ class TablaDireccionCliente extends Component
 
     public $direccion;
     public $cliente_id;
+    public $cliente;
     public $search;
     public $editModal = false;
     public $sort = 'id';
@@ -25,13 +27,14 @@ class TablaDireccionCliente extends Component
     public function direccionesCliente($cliente_id)
     {
         $this->cliente_id = $cliente_id;
+        $this->cliente = Cliente::find($cliente_id)->cliente;
         $this->dispatchBrowserEvent("showDirecciones");
     }
 
     public function render()
     {
         return view('livewire.direccion-cliente.tabla-direccion-cliente', [
-            'direcciones' => DireccionCliente::where('cliente_id', '=', $this->cliente_id)
+            'direcciones' => DireccionCliente::where('cliente_id', '=', 1)
                 ->where(function ($query) {
                     $query->orWhere('numero', 'like', '%' . $this->search . '%')
                         ->orWhere('calle', 'like', '%' . $this->search . '%')

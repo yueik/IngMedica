@@ -92,6 +92,7 @@ class TablaIngresoStock extends Component
 
     public function destroy($id)
     {
+        DetalleIngreso::where('ingreso_stock_id', $id)->delete();
         IngresoStock::destroy($id);
     }
 

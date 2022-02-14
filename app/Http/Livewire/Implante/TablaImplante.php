@@ -21,6 +21,8 @@ class TablaImplante extends Component
     public $direction = 'desc';
     public $state = [];
 
+    protected $listeners = ['render', 'destroy']; 
+
     public function render()
     {
         return view('livewire.implante.tabla-implante', [
@@ -35,7 +37,9 @@ class TablaImplante extends Component
                 })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate(),
-            'modelos' => Modelo::where('activo', '=', 1)->get(),
+            'modelos' => Modelo::where('activo', '=', 1)
+                    ->where('marca_id', '=', 1)
+                    ->get(),
             'talles' => Talle::where('activo', '=', 1)->get(),
             'estados' => EstadoInsumo::where('activo', '=', 1)->get(),
         ]);
@@ -91,9 +95,9 @@ class TablaImplante extends Component
         $this->dispatchBrowserEvent('closeModal');
     }
 
-    public function destroy($id)
+    public function destroy(Implante $implante)
     {
-        Implante::destroy($id);
+        $implante->delete();
     }
 
     public function order($sort)
