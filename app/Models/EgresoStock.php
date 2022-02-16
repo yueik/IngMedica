@@ -20,11 +20,11 @@ class EgresoStock extends Model
     protected $attributes = ['activo' => 1];
 
     public function estado() {
-        return $this->belongsTo(EstadoEgreso::class);
+        return $this->belongsTo(EstadoEgreso::class)->withDefault();
     }
 
     public function cliente() {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class)->withDefault();
     }
 
     public function detalle_egresos() {

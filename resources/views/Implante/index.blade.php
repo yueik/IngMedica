@@ -59,6 +59,9 @@
     window.addEventListener('showModal', event => {
       $("#addImplante").modal("show");
       $("#editImplante").modal("show");
+    })
+    window.addEventListener('showModalEgreso', event => {
+      $("#ImplanteEgresoStock").modal("show");
     })  
 </script>
 @stop

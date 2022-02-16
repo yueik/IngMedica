@@ -7,6 +7,10 @@ use App\Models\Implante;
 use App\Models\Modelo;
 use App\Models\EstadoInsumo;
 use App\Models\Talle;
+use App\Models\Cliente;
+use App\Models\EgresoStock;
+use App\Models\EstadoEgreso;
+use App\Models\DetalleEgreso;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,11 +19,14 @@ class TablaImplante extends Component
     use WithPagination;
 
     public $implante;
+    public $egreso_stock;
     public $search;
     public $editModal = false;
     public $sort = 'id';
     public $direction = 'desc';
     public $state = [];
+    public $stateEgreso = [];
+    public $detalles;
 
     protected $listeners = ['render', 'destroy']; 
 
@@ -77,6 +84,26 @@ class TablaImplante extends Component
         $this->state = $implante->toArray();
 
         $this->dispatchBrowserEvent("showModal");
+    }
+
+    //Modal de egreso stock en tabla-implante
+    public function implanteEgreso(EgresoStock $egreso_stock)
+    {
+        $this->egreso_stock = $egreso_stock;
+
+        $this->stateEgreso = $egreso_stock->toArray();
+
+        $cliente = Cliente::find($this->stateEgreso['cliente_id']);
+
+        $estado = EstadoEgreso::find($this->stateEgreso['estado_id']);
+
+        $this->stateEgreso['cliente_id'] = $cliente->cliente;
+
+        $this->stateEgreso['estado_id'] = $estado->estado;
+
+        $this->emit('detallesEgreso', [$egreso_stock->id, true]);
+
+        $this->dispatchBrowserEvent("showModalEgreso");
     }
 
     public function updateImplante()

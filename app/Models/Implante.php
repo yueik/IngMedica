@@ -20,15 +20,15 @@ class Implante extends Model
     protected $attributes = ['activo' => 1];
 
     public function modelo() {
-        return $this->belongsTo(Modelo::class);
+        return $this->belongsTo(Modelo::class)->withDefault();
     }
 
     public function talle() {
-        return $this->belongsTo(Talle::class);
+        return $this->belongsTo(Talle::class)->withDefault();
     }
 
     public function estado() {
-        return $this->belongsTo(EstadoInsumo::class);
+        return $this->belongsTo(EstadoInsumo::class)->withDefault();
     }
 
     public function detalle_egresos() {
