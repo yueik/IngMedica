@@ -19,12 +19,14 @@ class TablaDetalleEgreso extends Component
     public $sort = 'id';
     public $direction = 'desc';
     public $state = [];
+    public $vistaImplante;//bandera para ocultar btn AgregarImplante
 
     protected $listeners = ['detallesEgreso', 'render'];
 
-    public function detallesEgreso($egreso_stock_id)
+    public function detallesEgreso($array)
     {
-        $this->egreso_stock_id = $egreso_stock_id;
+        $this->egreso_stock_id = $array[0];//array[0] id de EgresoStock
+        $this->vistaImplante = $array[1];//array[1] booleano
     }
 
     public function render()

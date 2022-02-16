@@ -87,7 +87,7 @@ return [
     'layout_boxed' => null,
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -264,7 +264,7 @@ return [
                 ],
                 [
                     'text' => 'Modelos',
-                    'url'  => 'Modelos',                    
+                    'url'  => 'Modelos',
                 ],
                 [
                     'text' => 'Talles',
@@ -279,6 +279,16 @@ return [
                     'url'  => 'EstadosInsumo',
                 ],
             ],
+        ],
+        [
+            'text' => 'Términos y Condiciones',
+            'url'  => 'Terminos',
+            'icon' => '',
+        ],
+        [
+            'text' => 'Preguntas Frecuentes',
+            'url'  => 'Preguntas',
+            'icon' => '',
         ],
         /*['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
@@ -308,6 +318,7 @@ return [
             'icon_color' => 'yellow',
             'url'        => '#',
         ],*/
+
     ],
 
     /*

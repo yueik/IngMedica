@@ -32,7 +32,6 @@ Route::resource('/Direcciones', DireccionClienteController::class);
 Route::resource('/Egresos', EgresoStockController::class);
 Route::resource('/Ingresos', IngresoStockController::class);
 Route::resource('/EstadosEgreso', EstadoEgresoController::class);
-Route::resource('/EstadosInsumo', EstadoInsumoController::class);
 Route::get('/Reportes', [ReportesController::class, 'cantModelos']);
 Route::get('/ReportesMensuales', [ReportesController::class, 'ventasModelos']);
 
@@ -40,6 +39,12 @@ Route::get('/Remito/{egreso_id}', [Remito::class, 'index'])->name('Remito');
 
 Route::get('/Remito/pdf/{egreso_id}', [Remito::class, 'pdf'])->name('Remito/pdf');
 
+Route::get('/Terminos', function () {
+    return view('terminos');
+});
+Route::get('/Preguntas', function () {
+    return view('preguntas');
+});
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

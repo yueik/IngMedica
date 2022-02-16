@@ -27,14 +27,15 @@ class TablaDireccionCliente extends Component
     public function direccionesCliente($cliente_id)
     {
         $this->cliente_id = $cliente_id;
-        $this->cliente = Cliente::find($cliente_id)->cliente;
+        $cliente = Cliente::find($cliente_id);
+        $this->cliente = $cliente->cliente;
         $this->dispatchBrowserEvent("showDirecciones");
     }
 
     public function render()
     {
         return view('livewire.direccion-cliente.tabla-direccion-cliente', [
-            'direcciones' => DireccionCliente::where('cliente_id', '=', 1)
+            'direcciones' => DireccionCliente::where('cliente_id', '=', $this->cliente_id)
                 ->where(function ($query) {
                     $query->orWhere('numero', 'like', '%' . $this->search . '%')
                         ->orWhere('calle', 'like', '%' . $this->search . '%')

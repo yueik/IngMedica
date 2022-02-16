@@ -45,7 +45,7 @@ class TablaEgresoStock extends Component
     {
         $this->state = [];
         $this->editModal = false;
-        $this->emit('detallesEgreso', 0);
+        $this->emit('detallesEgreso', [0, false]);
         $this->dispatchBrowserEvent("showModal");
     }
 
@@ -77,7 +77,7 @@ class TablaEgresoStock extends Component
 
         $this->state = $egreso_stock->toArray();
 
-        $this->emit('detallesEgreso', $egreso_stock->id);
+        $this->emit('detallesEgreso', [$egreso_stock->id, false]);
         $this->dispatchBrowserEvent("showModal");
     }
 

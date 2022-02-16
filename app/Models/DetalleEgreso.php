@@ -18,11 +18,11 @@ class DetalleEgreso extends Model
     protected $attributes = ['activo' => 1];
 
     public function egreso_stock() {
-        return $this->belongsTo(EgresoStock::class);
+        return $this->belongsTo(EgresoStock::class)->withDefault();
     }
 
     public function implante() {
-        return $this->belongsTo(Implante::class);
+        return $this->belongsTo(Implante::class)->withDefault();
     }
 
 }

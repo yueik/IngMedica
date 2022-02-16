@@ -100,6 +100,60 @@
     </div>
   </div>
 
+  <div class="modal fade" wire:ignore.self id="ImplanteEgresoStock" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 85%;" role="document">
+            <div class="modal-content p-2">
+                <div class="modal-header mb-2 bg-blue-500">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <span class="text-white">Egreso de Stock</span>
+                    </h5>
+                    <button type="button" class="close" wire:click.prevent="cerrarModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    @csrf
+                    <div class="modal-body">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="form-group">
+                                <label for="fecha">Fecha</label>
+                                <input type="date" class="form-control"
+                                    name="fecha" wire:model.defer="stateEgreso.fecha" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="cliente_id">Cliente</label>
+                                <input type="text" class="form-control" name="cliente_id"
+                                    wire:model.defer="stateEgreso.cliente_id" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="montoFinal">Monto</label>
+                                <input type="number" class="form-control"
+                                    name="montoFinal" wire:model.defer="stateEgreso.montoFinal" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="estado_id">Estado</label>
+                                <input type="text" class="form-control"  name="estado_id"
+                                    wire:model.defer="stateEgreso.estado_id" disabled>                             
+                            </div>
+                            <div class="form-group">
+                                <label for="observacion">Observación</label>
+                                <input type="text" class="form-control" id="observacion"
+                                    wire:model.defer="stateEgreso.observacion" disabled>
+                            </div>
+                        </div>
+
+                        @livewire('detalle-egreso.tabla-detalle-egreso')
+
+                    </div>
+                    <div class="modal-footer align-items-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
   @if ($implantes->count())
 
   <div class="table-responsive">
@@ -211,7 +265,7 @@
             </a>
 
             @if($implante->detalle_egresos->count())
-            <button class="btn btn-success">
+            <button class="btn btn-success" wire:click.prevent="implanteEgreso({{ $implante->detalle_egresos[0]->egreso_stock }})">
               <i class="fas fa-trash"></i>
             </button>
             @endif

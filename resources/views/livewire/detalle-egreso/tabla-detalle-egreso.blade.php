@@ -1,6 +1,8 @@
 <div>
     <div class="px-0 py-3 flex justify-between">
+        @if(!$vistaImplante)
         <button wire:click.prevent="addDetalle" type="button" class="btn btn-primary">Agregar Implante</button>
+        @endif
         <input type="text" wire:model="search" placeholder="Buscar...">
     </div>
 
@@ -70,20 +72,6 @@
                 <tr>
                     <th scope="col"
                         class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
-                        wire:click="order('id')">
-                        Código
-                        @if($sort =='id')
-                        @if($direction == 'asc')
-                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                        @else
-                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                        @endif
-                        @else
-                        <i class="fas fa-sort float-right mt-1"></i>
-                        @endif
-                    </th>
-                    <th scope="col"
-                        class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider"
                         wire:click="order('implante_id')">
                         Implante
                         @if($sort =='implante_id')
@@ -110,24 +98,26 @@
                         <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
+                    @if(!$vistaImplante)
                     <th scope="col"
                         class="cursor-pointer px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
                         Acciones
                     </th>
+                    @endif
                 </tr>
             </thead>
             <tbody class="bg-white text-center divide-y divide-gray-200">
                 @foreach ($detalles as $detalle)
                 <tr>
-                    <td>{{ $detalle->id }}</td>
-                    <td>{{ $detalle->implante->id }}</td>
+                    <td>{{ $detalle->implante->codigo }}</td>
                     <td>{{ $detalle->monto }}</td>
+                    @if(!$vistaImplante)
                     <td>
                         <button type="button" class="btn btn-warning" wire:click.prevent="editDetalle({{ $detalle }})">
                             <i class="fas fa-pencil-alt"></i>
                         </button>
 
-                        <button wire:click.prevent="{{ $detalle->implante->estado->estado == 'Concesion' ? 'devolucion' : 'concesion' }}({{ $detalle->implante->id }})" 
+                        <button class="d-none" wire:click.prevent="{{ $detalle->implante->estado->estado == 'Concesion' ? 'devolucion' : 'concesion' }}({{ $detalle->implante->id }})" 
                             class="btn btn-{{ $detalle->implante->estado->estado == 'Concesion' ? 'success' : 'danger' }}">
                             <i class="fas fa-{{ $detalle->implante->estado->estado == 'Concesion' ? 'check' : 'times' }}"></i>
                         </button>
@@ -136,6 +126,7 @@
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
